@@ -1,0 +1,226 @@
+import React from 'react';
+import { 
+  User, 
+  Settings, 
+  Bell, 
+  Search, 
+  Mail, 
+  CheckCircle, 
+  AlertCircle, 
+  Info,
+  Plus,
+  Minus,
+  X,
+  Menu,
+  Maximize,
+  ChevronRight, 
+  ChevronLeft,
+  ChevronDown,
+  ChevronUp,
+  Home,
+  Trash,
+  Edit,
+  Save,
+  Download,
+  Upload,
+  ExternalLink,
+  Lock,
+  Unlock,
+  Eye,
+  EyeOff,
+  Calendar,
+  Clock,
+  MapPin,
+  Phone,
+  Layout,
+  Type,
+  Palette,
+  MousePointer2,
+  FormInput,
+  CreditCard,
+  Split,
+  WholeWord,
+  CheckSquare,
+  Table,
+  Code2,
+  Activity,
+  MessageSquare,
+  Filter,
+  Sun,
+  Moon,
+  Tag,
+  LucideProps,
+  Gauge,
+  BarChart,
+  Users,
+  File,
+  Folder,
+  Image,
+  Video,
+  Cloud,
+  Database,
+  Server,
+  Wifi,
+  Bluetooth,
+  Battery,
+  Zap,
+  Bookmark,
+  Star,
+  Heart,
+  ThumbsUp,
+  ThumbsDown,
+  Share,
+  Link,
+  Globe,
+  ShoppingCart,
+  DollarSign,
+  Percent,
+  List,
+  Grid,
+  MoreHorizontal,
+  MoreVertical,
+  ArrowRight,
+  ArrowLeft,
+  ArrowUp,
+  ArrowDown,
+  RefreshCw,
+  LogIn,
+  Shapes,
+  Layers,
+  RectangleHorizontal,
+  PictureInPicture2,
+  PanelTopDashed,
+  Timer,
+  Command
+} from 'lucide-react';
+
+export const StandardIcons = {
+  'user': User,
+  'settings': Settings,
+  'bell': Bell,
+  'search': Search,
+  'mail': Mail,
+  'check-circle': CheckCircle,
+  'alert-circle': AlertCircle,
+  'info': Info,
+  'plus': Plus,
+  'minus': Minus,
+  'close': X,
+  'menu': Menu,
+  'maximize': Maximize,
+  'chevron-right': ChevronRight,
+  'chevron-left': ChevronLeft,
+  'chevron-down': ChevronDown,
+  'chevron-up': ChevronUp,
+  'home': Home,
+  'trash': Trash,
+  'edit': Edit,
+  'save': Save,
+  'download': Download,
+  'upload': Upload,
+  'external-link': ExternalLink,
+  'lock': Lock,
+  'unlock': Unlock,
+  'eye': Eye,
+  'eye-off': EyeOff,
+  'calendar': Calendar,
+  'clock': Clock,
+  'map-pin': MapPin,
+  'phone': Phone,
+  'layout': Layout,
+  'type': Type,
+  'palette': Palette,
+  'cursor': MousePointer2,
+  'input': FormInput,
+  'credit-card': CreditCard,
+  'split': Split,
+  'text': WholeWord,
+  'check-square': CheckSquare,
+  'table': Table,
+  'code': Code2,
+  'activity': Activity,
+  'message': MessageSquare,
+  'message-square': MessageSquare,
+  'filter': Filter,
+  'sun': Sun,
+  'moon': Moon,
+  'tag': Tag,
+  'dashboard': Gauge,
+  'analytics': BarChart,
+  'users': Users,
+  'file': File,
+  'folder': Folder,
+  'image': Image,
+  'video': Video,
+  'cloud': Cloud,
+  'database': Database,
+  'server': Server,
+  'wifi': Wifi,
+  'bluetooth': Bluetooth,
+  'battery': Battery,
+  'power': Zap,
+  'bookmark': Bookmark,
+  'star': Star,
+  'heart': Heart,
+  'thumbs-up': ThumbsUp,
+  'thumbs-down': ThumbsDown,
+  'share': Share,
+  'link': Link,
+  'globe': Globe,
+  'cart': ShoppingCart,
+  'dollar': DollarSign,
+  'percent': Percent,
+  'list': List,
+  'grid': Grid,
+  'more-horizontal': MoreHorizontal,
+  'more-vertical': MoreVertical,
+  'arrow-right': ArrowRight,
+  'arrow-left': ArrowLeft,
+  'arrow-up': ArrowUp,
+  'arrow-down': ArrowDown,
+  'refresh': RefreshCw,
+  'login': LogIn,
+  'shapes': Shapes,
+  'layers': Layers,
+  'rectangle-horizontal': RectangleHorizontal,
+  'picture-in-picture-2': PictureInPicture2,
+  'panel-top-dashed': PanelTopDashed,
+  'clock-fading': Timer,
+  'command': Command
+} as const;
+
+export type IconName = keyof typeof StandardIcons;
+
+interface IconProps extends Omit<LucideProps, 'ref'> {
+  name?: IconName;
+  customIcon?: React.ElementType;
+}
+
+export const Icon = React.forwardRef<SVGSVGElement, IconProps>(({ name, customIcon: CustomIcon, className, size = 24, ...props }, ref) => {
+  if (CustomIcon) {
+    return (
+      <CustomIcon 
+        size={size} 
+        className={className} 
+        ref={ref}
+        {...props} 
+      />
+    );
+  }
+
+  if (name && StandardIcons[name]) {
+    const IconComponent = StandardIcons[name];
+    return (
+      <IconComponent 
+        size={size} 
+        className={className} 
+        ref={ref}
+        {...props} 
+      />
+    );
+  }
+
+  return null;
+});
+
+Icon.displayName = "Icon";
