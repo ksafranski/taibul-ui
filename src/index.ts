@@ -40,4 +40,6 @@ export * from './components/TimePicker';
 export * from './components/Toast';
 export * from './components/Tooltip';
 export * from './components/Typography';
+export * from './components/FontProvider';
+export * from './components/FontPicker';
 export * from './hooks/useScrollSpy';

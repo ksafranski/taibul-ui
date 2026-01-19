@@ -24,7 +24,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "design-system/*": ["./src/*"], 
-      "design-system": ["./src/index.ts"]
+      "design-system": ["./src/index.ts"],
+      "taibul-ui": ["./src/index.ts"],
+      "taibul-ui/style.css": ["./src/index.css"]
     }
   },
   "include": ["src", "example"],

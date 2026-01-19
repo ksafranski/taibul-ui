@@ -1,13 +1,15 @@
 # taibul-ui
 
-A modern, responsive design system and UI library built with React and Vite.
+A modern, simple design system and UI library.
+
+![Screenshot](./preview.png)
 
 ## Getting Started
 
 ### Installation
 
 ```bash
-bun install
+(npm|yarn|pnpm|bun) install taibul-ui
 ```
 
 ### Development

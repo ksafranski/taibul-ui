@@ -1,31 +1,7 @@
 
 
 import React, { useState } from 'react';
-import { Button } from '@/components/Button';
-import { Input } from '@/components/Input';
-import { TextArea } from '@/components/TextArea';
-import { Card } from '@/components/Card';
-import { Heading, Text } from '@/components/Typography';
-import { Modal } from '@/components/Modal';
-import { useToast } from '@/components/Toast';
-import { Spinner } from '@/components/Spinner';
-import { Progress } from '@/components/Progress';
-import { Checkbox } from '@/components/Checkbox';
-import { Switch } from '@/components/Switch';
-import { RadioGroup } from '@/components/RadioGroup';
-import { Combobox } from '@/components/Combobox';
-import { Tag } from '@/components/Tag';
-import { Avatar } from '@/components/Avatar';
-import { DatePicker, DateValue } from '@/components/DatePicker';
-import { FileUploader } from '@/components/FileUploader';
-import { Tabs } from '@/components/Tabs';
-import { Collapse } from '@/components/Collapse';
-import { Divider } from '@/components/Divider';
-import { Slider } from '@/components/Slider';
-import { Select } from '@/components/Select';
-import { Calendar } from '@/components/Calendar';
-import { ColorPicker } from '@/components/ColorPicker';
-import { Icon, StandardIcons, IconName } from '@/components/Icon';
+import { Button, Input, TextArea, Card, Heading, Text, Modal, useToast, Spinner, Progress, Checkbox, Switch, RadioGroup, Combobox, Tag, Avatar, DatePicker, DateValue, FileUploader, Tabs, Collapse, Divider, Slider, Select, Calendar, ColorPicker, Icon, StandardIcons, IconName } from 'taibul-ui';
 import { 
   User, 
   Settings, 
@@ -42,24 +18,26 @@ import {
   Sun,
   Moon
 } from 'lucide-react';
-import { Table, Column } from '@/components/Table';
-import { SyntaxHighlighter } from '@/components/SyntaxHighlighter';
-import { CodeReveal } from '@/components/CodeReveal';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-import { Layout } from '@/components/Layout';
-import { Grid } from '@/components/Grid';
-import { Menu, NavigationItem } from '@/components/Menu';
-import { useTheme } from '@/components/ThemeProvider';
-import { useFont } from '@/components/FontProvider';
-import { FontPicker } from '@/components/FontPicker';
-import { Tooltip } from '@/components/Tooltip';
-import { CopyToClipboard } from '@/components/CopyToClipboard';
-import { TextEllipsis } from '@/components/TextEllipsis';
-import { Space } from '@/components/Space';
-import { KeyboardShortcut } from '@/components/KeyboardShortcut';
-import { Confirm } from '@/components/Confirm';
-import { ContentEditable } from '@/components/ContentEditable';
-import { useScrollSpy } from '@/hooks/useScrollSpy';
+import { 
+  Table, Column, 
+  SyntaxHighlighter, 
+  CodeReveal, 
+  MarkdownRenderer, 
+  Layout, 
+  Grid, 
+  Menu, NavigationItem, 
+  useTheme, 
+  useFont, 
+  FontPicker, 
+  Tooltip, 
+  CopyToClipboard, 
+  TextEllipsis, 
+  Space, 
+  KeyboardShortcut, 
+  Confirm, 
+  ContentEditable, 
+  useScrollSpy 
+} from 'taibul-ui';
 
 const ScrollSpyDemo = () => {
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -352,8 +330,9 @@ export default function StyleGuide() {
       <div className="mb-12">
         <Heading level={1} className="mb-4">Style Guide</Heading>
         <Text variant="lead">
-          A comprehensive set of modern, minimalistic components built with CSS variables, Urbanist, and Tailwind.
+          A comprehensive set of modern, minimalistic components.
         </Text>
+        <SyntaxHighlighter className="mt-4" language="shell" code="(npm/yarn/pnpm/bun) install taibul-ui" />
       </div>
 
       <section id="theme-customization" className="mb-16 scroll-mt-24 p-6 border border-border rounded-lg bg-muted/30">
@@ -527,7 +506,7 @@ export default function StyleGuide() {
             </Layout>
           </div>
 
-          <CodeReveal language="tsx" code={`import { Layout } from '@/components/Layout';
+          <CodeReveal language="tsx" code={`import { Layout } from 'taibul-ui';
 
 export default function AppLayout() {
   return (
@@ -722,7 +701,7 @@ export default function AppLayout() {
             </Text>
           </div>
           <CodeReveal 
-            code={`import { Heading, Text } from '@/design-system';
+            code={`import { Heading, Text } from 'taibul-ui';
 
 // Headings
 <Heading level={1}>Heading 1</Heading>
@@ -767,7 +746,7 @@ export default function AppLayout() {
             </div>
           </div>
           <CodeReveal 
-            code={`import { Menu } from '@/design-system';
+            code={`import { Menu } from 'taibul-ui';
 
 const items = [
   { header: 'Main' },
@@ -820,7 +799,7 @@ const items = [
           </Space>
           
           <CodeReveal 
-            code={`import { Divider } from '@/design-system';
+            code={`import { Divider } from 'taibul-ui';
 
 // Horizontal (Default)
 <Divider />
@@ -879,7 +858,7 @@ const items = [
                     </div>
                   </Space>
                   <CodeReveal 
-                    code={`import { Combobox } from '@/design-system';
+                    code={`import { Combobox } from 'taibul-ui';
 
 // Single Select (Controlled)
 <Combobox 
@@ -916,7 +895,7 @@ const items = [
                       ]} 
                     />
                     <CodeReveal 
-                       code={`import { Select } from '@/design-system';
+                       code={`import { Select } from 'taibul-ui';
 
 // Uses native <select> element
 <Select 
@@ -962,7 +941,7 @@ const items = [
                     </Space>
                   </div>
                   <CodeReveal 
-                    code={`import { Checkbox, Switch, RadioGroup } from '@/design-system';
+                    code={`import { Checkbox, Switch, RadioGroup } from 'taibul-ui';
 
 // Boolean Inputs (val: boolean, e: ChangeEvent)
 <Checkbox 
@@ -1057,7 +1036,7 @@ const items = [
 
                   </Space>
                   <CodeReveal 
-                    code={`import { Input, TextArea } from '@/design-system';
+                    code={`import { Input, TextArea } from 'taibul-ui';
 
 // Standard Input (val: string, e: ChangeEvent)
 <Input 
@@ -1106,7 +1085,7 @@ const items = [
                  placeholder="Type something..."
                />
                <CodeReveal 
-                 code={`import { ContentEditable } from '@/design-system';
+                 code={`import { ContentEditable } from 'taibul-ui';
 
 // Inline-flex content editing
 <ContentEditable 
@@ -1163,7 +1142,7 @@ const items = [
                        </div>
 
                        <CodeReveal 
-                          code={`import { DatePicker } from '@/design-system';
+                          code={`import { DatePicker } from 'taibul-ui';
 
 // Date Picker (val: DateValue)
 <DatePicker 
@@ -1194,7 +1173,7 @@ const items = [
                            />
                         </div>
                         <CodeReveal 
-                           code={`import { Calendar } from '@/design-system';
+                           code={`import { Calendar } from 'taibul-ui';
 
 // Standalone Calendar Component
 <Calendar 
@@ -1246,7 +1225,7 @@ const items = [
                           </div>
                       </div>
                       <CodeReveal 
-                        code={`import { Slider } from '@/design-system';
+                        code={`import { Slider } from 'taibul-ui';
 
 // 1. Single Point Slider
 // Pass a single number to 'value' or 'defaultValue' to create a standard slider
@@ -1304,7 +1283,7 @@ const items = [
                  </Grid.Col>
                </Grid.Row>
                <CodeReveal 
-                 code={`import { ColorPicker } from '@/design-system';
+                 code={`import { ColorPicker } from 'taibul-ui';
 
 <ColorPicker 
   label="Brand Color"
@@ -1340,7 +1319,7 @@ const items = [
                  </Grid.Col>
                </Grid.Row>
                <CodeReveal 
-                 code={`import { FileUploader } from '@/design-system';
+                 code={`import { FileUploader } from 'taibul-ui';
 
 // Button Variant (files: File[])
 <FileUploader 
@@ -1389,7 +1368,7 @@ const items = [
             <Button disabled>Disabled</Button>
           </Space>
           <CodeReveal 
-            code={`import { Button } from '@/design-system';
+            code={`import { Button } from 'taibul-ui';
 
 <Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
@@ -1425,7 +1404,7 @@ const items = [
         </Grid.Row>
         
         <CodeReveal 
-          code={`import { Progress, Spinner } from '@/design-system';
+          code={`import { Progress, Spinner } from 'taibul-ui';
 
 // Progress
 <Progress value={50} showValue />
@@ -1471,7 +1450,7 @@ const items = [
         </Grid.Row>
         
         <CodeReveal 
-            code={`import { Card, Heading, Text } from '@/design-system';
+            code={`import { Card, Heading, Text } from 'taibul-ui';
 
 <Card>
   <Card.Header>
@@ -1524,7 +1503,7 @@ const items = [
           </Space>
 
           <CodeReveal 
-            code={`import { Tag } from '@/design-system';
+            code={`import { Tag } from 'taibul-ui';
 
 <Tag variant="primary">Primary</Tag>
 <Tag variant="success" leftIcon={CheckCircle}>Verified</Tag>
@@ -1561,7 +1540,7 @@ const items = [
             </Space>
           </Space>
           <CodeReveal 
-            code={`import { Avatar } from '@/design-system';
+            code={`import { Avatar } from 'taibul-ui';
 
 <Avatar size="md" src="image.jpg" />
 <Avatar size="md" name="John Doe" />
@@ -1593,7 +1572,7 @@ const items = [
             <Button variant="ghost" isLoading>Processing</Button>
           </Space>
           <CodeReveal 
-            code={`import { Button, Icon } from '@/design-system';
+            code={`import { Button, Icon } from 'taibul-ui';
 import { Plus, Search } from 'lucide-react';
 
 <Icon name="activity" size={24} />
@@ -1650,7 +1629,7 @@ import { Plus, Search } from 'lucide-react';
         />
 
         <CodeReveal 
-            code={`import { Modal, Confirm } from '@/design-system';
+            code={`import { Modal, Confirm } from 'taibul-ui';
 
 const [isOpen, setIsOpen] = useState(false);
 const [showConfirm, setShowConfirm] = useState(false);
@@ -1717,7 +1696,7 @@ const [showConfirm, setShowConfirm] = useState(false);
         </Space>
         
         <CodeReveal 
-            code={`import { useToast } from '@/design-system';
+            code={`import { useToast } from 'taibul-ui';
 
 const { toast } = useToast();
 
@@ -1747,7 +1726,7 @@ const { toast } = useToast();
             </Tooltip>
           </Space>
           <CodeReveal 
-            code={`import { Tooltip } from '@/design-system';
+            code={`import { Tooltip } from 'taibul-ui';
 
 // Tooltip
 <Tooltip content="Tooltip Text" delay={200}>
@@ -1837,7 +1816,7 @@ const { toast } = useToast();
           </Space>
 
           <CodeReveal 
-            code={`import { Tabs } from '@/design-system';
+            code={`import { Tabs } from 'taibul-ui';
 
 <Tabs defaultValue="account">
   <Tabs.List>
@@ -1861,8 +1840,7 @@ const { toast } = useToast();
              <Collapse defaultActiveKey={['1']}>
                <Collapse.Panel id="1" header="What is Taibul-UI?">
                   <Text>
-                    Taibul-UI is a comprehensive React component library designed for modern web applications. 
-                    It provides a set of high-quality, accessible, and customizable components.
+                    Taibul-UI is a minimalistic, clean, and modern React component library designed for modern web applications. 
                   </Text>
                </Collapse.Panel>
                <Collapse.Panel id="2" header="How do I install it?">
@@ -1922,7 +1900,7 @@ const { toast } = useToast();
           </Space>
 
            <CodeReveal 
-             code={`import { Collapse } from '@/design-system';
+             code={`import { Collapse } from 'taibul-ui';
 
 // Accordion Mode (one open at a time)
 <Collapse accordion defaultActiveKey="1">
@@ -1958,7 +1936,7 @@ const { toast } = useToast();
         </Space>
 
         <CodeReveal 
-          code={`import { Table } from '@/design-system';
+          code={`import { Table } from 'taibul-ui';
 
 const columns = [
   { key: 'name', label: 'Name', sortable: true },
@@ -1997,7 +1975,7 @@ console.log(greeting('Developer'));`}
             />
 
             <CodeReveal 
-              code={`import { SyntaxHighlighter } from '@/design-system';
+              code={`import { SyntaxHighlighter } from 'taibul-ui';
 
 <SyntaxHighlighter 
   language="typescript" 
@@ -2028,7 +2006,7 @@ features.forEach(f => console.log(f));
 `} 
               />
               <CodeReveal 
-                code={`import { MarkdownRenderer } from '@/design-system';
+                code={`import { MarkdownRenderer } from 'taibul-ui';
 
 <MarkdownRenderer 
   content="# Hello World" 
@@ -2087,7 +2065,7 @@ features.forEach(f => console.log(f));
                 </Space>
             </Space>
             <CodeReveal 
-              code={`import { CopyToClipboard, TextEllipsis, KeyboardShortcut } from '@/design-system';
+              code={`import { CopyToClipboard, TextEllipsis, KeyboardShortcut } from 'taibul-ui';
 
 // Copy to Clipboard
 <CopyToClipboard text="Content to copy" />
@@ -2117,7 +2095,7 @@ features.forEach(f => console.log(f));
             </div>
 
             <CodeReveal 
-              code={`import { useScrollSpy } from '@/design-system';
+              code={`import { useScrollSpy } from 'taibul-ui';
 
 // 1. Create a ref for the scroll container
 const containerRef = useRef<HTMLDivElement>(null);

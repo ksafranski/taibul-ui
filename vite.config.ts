@@ -21,6 +21,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       'design-system': path.resolve(__dirname, './src'),
+      'taibul-ui/style.css': path.resolve(__dirname, './src/index.css'),
+      'taibul-ui': path.resolve(__dirname, './src'),
     },
   },
   build: {
