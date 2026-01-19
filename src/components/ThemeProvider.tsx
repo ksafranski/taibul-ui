@@ -75,13 +75,19 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>('light');
+// ... imports
+
+export const ThemeProvider: React.FC<{ children: ReactNode; storageKey?: string; defaultTheme?: Theme }> = ({ 
+  children, 
+  storageKey, 
+  defaultTheme = 'light' 
+}) => {
+  const [theme, setThemeState] = useState<Theme>(defaultTheme);
   const [syntaxTheme, setSyntaxThemeState] = useState<SyntaxThemeName>('One Dark');
   
   // New customization state with defaults matching main.css
   const [primaryColor, setPrimaryColorState] = useState<string>('#2563eb');
-  const [borderRadius, setBorderRadiusState] = useState<number>(0.3);
+  const [borderRadius, setBorderRadiusState] = useState<number>(0.75);
   const [baseFontSize, setBaseFontSizeState] = useState<number>(16);
 
   // Advanced Theming Defaults
@@ -93,44 +99,61 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // 1. Check local storage for main theme
-    const storedTheme = localStorage.getItem('theme') as Theme | null;
+    // 1. Check local storage if key provided
+    let storedTheme: Theme | null = null;
+    if (storageKey) {
+       storedTheme = localStorage.getItem(`${storageKey}-theme`) as Theme | null;
+    }
+
     if (storedTheme) {
       setThemeState(storedTheme);
     } else {
       // 2. Check system preference
-      const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      setThemeState(systemPreference);
+      // We always default to system preference if no stored theme found (or storage disabled)
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      setThemeState(mediaQuery.matches ? 'dark' : 'light');
+
+      // Add listener for system changes
+      const handler = (e: MediaQueryListEvent) => setThemeState(e.matches ? 'dark' : 'light');
+      mediaQuery.addEventListener('change', handler);
+      return () => mediaQuery.removeEventListener('change', handler);
+    }
+  }, [storageKey]);
+
+  useEffect(() => {
+    if (!storageKey) {
+        setMounted(true);
+        return;
     }
 
     // Check local storage for syntax theme
-    const storedSyntaxTheme = localStorage.getItem('syntaxTheme') as SyntaxThemeName | null;
+    const storedSyntaxTheme = localStorage.getItem(`${storageKey}-syntax-theme`) as SyntaxThemeName | null;
     if (storedSyntaxTheme && SYNTAX_THEMES[storedSyntaxTheme]) {
       setSyntaxThemeState(storedSyntaxTheme);
     }
 
     // Restore custom theme settings
-    const storedPrimary = localStorage.getItem('primaryColor');
+    const storedPrimary = localStorage.getItem(`${storageKey}-primary-color`);
     if (storedPrimary) setPrimaryColorState(storedPrimary);
 
-    const storedRadius = localStorage.getItem('borderRadius');
+    const storedRadius = localStorage.getItem(`${storageKey}-border-radius`);
     if (storedRadius) setBorderRadiusState(parseFloat(storedRadius));
 
-    const storedFontSize = localStorage.getItem('baseFontSize');
+    const storedFontSize = localStorage.getItem(`${storageKey}-base-font-size`);
     if (storedFontSize) setBaseFontSizeState(parseFloat(storedFontSize));
 
     // Restore Advanced Defaults
-    const sLightBg = localStorage.getItem('lightBackground');
+    const sLightBg = localStorage.getItem(`${storageKey}-light-bg`);
     if (sLightBg) setLightBackground(sLightBg);
-    const sLightFg = localStorage.getItem('lightForeground');
+    const sLightFg = localStorage.getItem(`${storageKey}-light-fg`);
     if (sLightFg) setLightForeground(sLightFg);
-    const sDarkBg = localStorage.getItem('darkBackground');
+    const sDarkBg = localStorage.getItem(`${storageKey}-dark-bg`);
     if (sDarkBg) setDarkBackground(sDarkBg);
-    const sDarkFg = localStorage.getItem('darkForeground');
+    const sDarkFg = localStorage.getItem(`${storageKey}-dark-fg`);
     if (sDarkFg) setDarkForeground(sDarkFg);
 
     setMounted(true);
-  }, []);
+  }, [storageKey]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -138,8 +161,11 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme, mounted]);
+    
+    if (storageKey) {
+        localStorage.setItem(`${storageKey}-theme`, theme);
+    }
+  }, [theme, mounted, storageKey]);
 
   // Effect to apply custom theme variables
   useEffect(() => {
@@ -163,16 +189,18 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
        root.style.setProperty('--foreground', darkForeground);
     }
 
-    // Persist
-    localStorage.setItem('primaryColor', primaryColor);
-    localStorage.setItem('borderRadius', borderRadius.toString());
-    localStorage.setItem('baseFontSize', baseFontSize.toString());
+    // Persist only if key provided
+    if (storageKey) {
+        localStorage.setItem(`${storageKey}-primary-color`, primaryColor);
+        localStorage.setItem(`${storageKey}-border-radius`, borderRadius.toString());
+        localStorage.setItem(`${storageKey}-base-font-size`, baseFontSize.toString());
 
-    // Persist Advanced
-    localStorage.setItem('lightBackground', lightBackground);
-    localStorage.setItem('lightForeground', lightForeground);
-    localStorage.setItem('darkBackground', darkBackground);
-    localStorage.setItem('darkForeground', darkForeground);
+        // Persist Advanced
+        localStorage.setItem(`${storageKey}-light-bg`, lightBackground);
+        localStorage.setItem(`${storageKey}-light-fg`, lightForeground);
+        localStorage.setItem(`${storageKey}-dark-bg`, darkBackground);
+        localStorage.setItem(`${storageKey}-dark-fg`, darkForeground);
+    }
     
   }, [
     primaryColor, 
@@ -183,7 +211,8 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     lightBackground, 
     lightForeground, 
     darkBackground, 
-    darkForeground
+    darkForeground,
+    storageKey
   ]);
 
   const toggleTheme = () => {
@@ -196,9 +225,12 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const setSyntaxTheme = (newTheme: SyntaxThemeName) => {
     setSyntaxThemeState(newTheme);
-    localStorage.setItem('syntaxTheme', newTheme);
+    if (storageKey) {
+        localStorage.setItem(`${storageKey}-syntax-theme`, newTheme);
+    }
   };
 
+  // ... (rest of setters remain the same)
   const setPrimaryColor = (color: string) => {
     setPrimaryColorState(color);
   };
@@ -236,6 +268,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     </ThemeContext.Provider>
   );
 };
+// ... rest of file
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);

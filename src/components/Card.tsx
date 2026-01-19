@@ -24,7 +24,7 @@ const Header = ({ children, className = '' }: { children: React.ReactNode; class
 );
 
 const Content = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <div className={`p-6 pt-0 ${className}`}>
+  <div className={`p-6 ${className}`}>
     {children}
   </div>
 );
