@@ -1,6 +1,6 @@
 {
   "name": "taibul-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "type": "module",
   "main": "./dist/taibul-ui.umd.js",
@@ -12,7 +12,7 @@
       "require": "./dist/taibul-ui.umd.js",
       "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/index.css"
   },
   "files": [
     "dist"
@@ -46,6 +46,7 @@
     "tailwindcss": "^4.0.0",
     "typescript": "^5",
     "vite": "^5.0.12",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-lib-inject-css": "^2.2.2"
   }
 }
