@@ -33,8 +33,18 @@ export default defineConfig({
       fileName: (format) => `taibul-ui.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: [
+        'react', 
+        'react-dom', 
+        'react/jsx-runtime', 
+        'lucide-react', 
+        'date-fns', 
+        'react-markdown', 
+        'react-syntax-highlighter',
+        'react-syntax-highlighter/dist/esm/styles/prism'
+      ],
       output: {
+        banner: '"use client";',
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
