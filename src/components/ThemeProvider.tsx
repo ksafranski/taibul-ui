@@ -81,7 +81,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   
   // New customization state with defaults matching main.css
   const [primaryColor, setPrimaryColorState] = useState<string>('#2563eb');
-  const [borderRadius, setBorderRadiusState] = useState<number>(0.5);
+  const [borderRadius, setBorderRadiusState] = useState<number>(0.3);
   const [baseFontSize, setBaseFontSizeState] = useState<number>(16);
 
   // Advanced Theming Defaults

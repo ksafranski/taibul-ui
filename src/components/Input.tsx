@@ -101,7 +101,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(({ label, er
         <input
           ref={ref}
           type={inputType}
-          className={`flex w-full border border-input bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all h-12 px-4 text-base rounded-lg ${isPassword && !showPassword ? 'font-bold tracking-widest text-lg' : ''} ${className}`}
+          className={`flex w-full border border-input bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all h-10 px-4 text-base rounded-md ${isPassword && !showPassword ? 'font-bold tracking-widest text-lg' : ''} ${className}`}
           onChange={handleChange}
           value={internalValue}
           {...props}
